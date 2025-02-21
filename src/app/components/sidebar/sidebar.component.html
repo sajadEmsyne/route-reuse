@@ -1,0 +1,5 @@
+<ul>
+  @for (route of routeList; track $index) {
+  <li (click)="gotoPage(route.path)">{{ route.name }}</li>
+  }
+</ul>

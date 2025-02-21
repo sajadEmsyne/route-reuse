@@ -1,0 +1,7 @@
+<div>
+  <ul>
+    @for (user of userList; track $index) {
+    <li (click)="gotoDetailedView()">{{ user.name }}</li>
+    }
+  </ul>
+</div>
