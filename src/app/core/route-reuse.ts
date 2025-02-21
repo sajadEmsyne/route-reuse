@@ -13,8 +13,7 @@ import { Subject } from 'rxjs';
 
 export class CustomRouteReuseStrategy implements RouteReuseStrategy {
     private storedHandles = new Map<string, DetachedRouteHandle>();
-    private refreshComponent = new Subject<void>();
-    refreshComponent$ = this.refreshComponent.asObservable();
+    refreshComponent = new Subject<void>();
 
     shouldDetach(route: ActivatedRouteSnapshot): boolean {  //prev route
         // const currParent = this.getRouteKey(route).split('/').filter((e => e))[0];
@@ -44,7 +43,7 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
 
     shouldAttach(route: ActivatedRouteSnapshot): boolean { //curr
         const key = this.getRouteKey(route);
-        console.log(key,"Key")
+        console.log(key, "Key")
         return this.storedHandles.has(key);
     }
 
@@ -52,7 +51,7 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
         // console.log("Retrieve",route)
 
         const key = this.getRouteKey(route);
-        console.log(key,"key")
+        console.log(key, "key")
         return this.storedHandles.get(key) || null;
     }
 
@@ -62,7 +61,7 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
     ): boolean {
         // console.log(future.routeConfig === curr.routeConfig,"Route",this.storedHandles)
         // return future.routeConfig === curr.routeConfig;
-        return false;   
+        return false;
     }
 
     private getRouteKey(route: ActivatedRouteSnapshot): string {
@@ -70,8 +69,8 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
         // return route.pathFromRoot[1]?.url.map((r) => r.path).join('/') || '';
     }
 
-    triggerComponentRefresh(): void {
-        this.refreshComponent.next();
+    triggerComponentRefresh(value: any = ''): void {
+        this.refreshComponent.next(value);
     }
 }
 

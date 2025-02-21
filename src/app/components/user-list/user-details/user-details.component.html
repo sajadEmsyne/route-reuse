@@ -1,15 +1,28 @@
 <form [formGroup]="homeForm">
-    <div>
-        <input type="text" formControlName="userName" name="userName" id="userName">
-        <select name="gender" id="gender" formControlName="gender">
-            @for (gender of genderList; track $index) {
-                <option [value]="gender.id">{{gender.name}}</option>
-            }
-        </select>
-        <textarea name="address" id="address" formControlName="address"></textarea>
-    </div>
-    <div>
-        <button type="button" (click)="submitForm()">Submit</button>
-        <button type="button" (click)="redirectToAbout()">Redirect</button>
-    </div>
+  <div>
+    <input
+      type="text"
+      formControlName="userName"
+      name="userName"
+      id="userName"
+      placeholder="user name"
+    />
+    <select name="gender" id="gender" formControlName="gender">
+      @for (gender of genderList; track $index) {
+      <option [value]="gender.id">{{ gender.name }}</option>
+      }
+    </select>
+    <textarea
+      name="address"
+      id="address"
+      formControlName="address"
+      placeholder="address"
+    ></textarea>
+  </div>
+  <div>
+    <button type="button" (click)="submitForm()">
+      Click here to update List with username
+    </button>
+    <button type="button" (click)="redirectToAbout()">Redirect</button>
+  </div>
 </form>

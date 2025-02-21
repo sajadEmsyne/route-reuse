@@ -36,8 +36,7 @@ export class UserDetailsComponent {
   }
 
   submitForm() {
-    // console.log(this.homeForm.value, "Value")
-    this._routeReuseStrategy.triggerComponentRefresh();
+    this._routeReuseStrategy.triggerComponentRefresh(this.homeForm.value.userName);
   }
 
   redirectToAbout() {

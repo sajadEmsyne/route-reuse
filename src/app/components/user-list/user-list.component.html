@@ -1,7 +1,17 @@
 <div>
   <ul>
-    @for (user of userList; track $index) {
-    <li (click)="gotoDetailedView()">{{ user.name }}</li>
+    @if(userList.length > 0){ @for (user of userList; track $index) {
+    <li (click)="gotoDetailedView()">
+      {{ user.firstName }} {{ user.lastName }}
+    </li>
+    } }@else if(userList.length == 0 && userNamePassed ){ No users founf with
+    userName
+    {{
+      userNamePassed
+    }}
+
+    <br>
+    <button type="button" (click)="fetchUsers()">Refresh</button>
     }
   </ul>
 </div>

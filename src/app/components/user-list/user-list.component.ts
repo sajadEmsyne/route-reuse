@@ -20,22 +20,24 @@ export class UserListComponent {
   userList: any[] = [];
   private _routeReuseStrategy = inject(CustomRouteReuseStrategy);
   private refreshSubscription!: Subscription;
-
+  userNamePassed: string = ''
   constructor() {
 
   }
 
   ngOnInit() {
-    this.refreshSubscription = this._routeReuseStrategy.refreshComponent$.subscribe(() => {
-      this.fetchUsers(10);
+    this.refreshSubscription = this._routeReuseStrategy.refreshComponent.subscribe((userName: any) => {
+      this.userNamePassed = userName;
+      this.fetchUsers(userName);
     });
-    this.fetchUsers(100);
+    this.fetchUsers();
     console.log("user-list component created")
   }
 
-  fetchUsers(limit: number) {
-    this._http.post('http://localhost:3000/getData', { limit: limit }).subscribe((data: any) => {
-      this.userList = data.data
+  fetchUsers(query: string = '') {
+    const url = query ? `https://dummyjson.com/users/search?q=${query}` : `https://dummyjson.com/users`
+    this._http.get(url).subscribe((data: any) => {
+      this.userList = data.users
     })
   }
 
