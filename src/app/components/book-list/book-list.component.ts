@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { CustomRouteReuseStrategy } from '../../core/route-reuse';
 
 @Component({
   selector: 'app-book-list',
@@ -8,10 +11,22 @@ import { Component } from '@angular/core';
   styleUrl: './book-list.component.css'
 })
 export class BookListComponent {
-  ngOnInit(){
-    console.log("book component created")
+  _router = inject(Router);
+  private refreshSubscription!: Subscription;
+  private _routeReuseStrategy = inject(CustomRouteReuseStrategy);
+  dynamicData: any = ''
+  ngOnInit() {
+    console.log("book component created");
+    this.refreshSubscription = this._routeReuseStrategy.refreshComponent.subscribe((data: any) => {
+      this.dynamicData = data;
+    });
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     console.warn("Book component destroyed")
+    this.refreshSubscription.unsubscribe();
+  }
+
+  gotoDetailedView() {
+    this._router.navigate(['/books/details'])
   }
 }

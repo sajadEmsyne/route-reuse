@@ -3,6 +3,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { UserDetailsComponent } from './components/user-list/user-details/user-details.component';
 import { UserSubComponent } from './components/user-list/user-sub/user-sub.component';
+import { BookDetailsComponent } from './components/book-list/book-details/book-details.component';
 
 export const routes: Routes = [
     {
@@ -13,7 +14,7 @@ export const routes: Routes = [
     {
         path: 'users',
         component: UserListComponent,
-        data: { reuse: true ,parentName:'users'},
+        data: { reuse: true, parentName: 'users' },
     },
     {
         path: 'users/details',
@@ -27,11 +28,11 @@ export const routes: Routes = [
     {
         path: 'books',
         component: BookListComponent,
-        data: { reuse: true ,parentName:'books'},
+        data: { reuse: true, parentName: 'books' },
     },
     {
-        path: 'books/test',
-        component: UserDetailsComponent
+        path: 'books/details',
+        component: BookDetailsComponent
     }
 
 ];

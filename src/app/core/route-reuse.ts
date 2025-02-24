@@ -1,9 +1,8 @@
-import { inject, Injectable, Injector, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
-    RouteReuseStrategy,
     ActivatedRouteSnapshot,
     DetachedRouteHandle,
-    Router,
+    RouteReuseStrategy
 } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -59,6 +58,7 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
         future: ActivatedRouteSnapshot,
         curr: ActivatedRouteSnapshot
     ): boolean {
+        console.log(future,curr)
         // console.log(future.routeConfig === curr.routeConfig,"Route",this.storedHandles)
         // return future.routeConfig === curr.routeConfig;
         return false;
